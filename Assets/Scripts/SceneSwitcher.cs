@@ -20,8 +20,10 @@ public class SceneSwitcher : MonoBehaviour
         _nextSceneButton.onClick.RemoveListener(OnSwitchScene);
     }
 
-    private void OnSwitchScene()
+    public void OnSwitchScene()
     {
+        Time.timeScale = 1;
+
         int currentSceneNumber = SceneManager.GetActiveScene().buildIndex;
         int nextSceneNumber = currentSceneNumber + 1;
 

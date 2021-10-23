@@ -9,6 +9,7 @@ public class LoseCollider : MonoBehaviour
     {
         // TODO: Сделать отнимание жизни, а не моментальный проигрыш.
 
+        Cursor.visible = true;
         SceneManager.LoadScene(gameOverSceneName);
     }
 }

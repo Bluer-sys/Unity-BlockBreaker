@@ -2404,6 +2404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blocksContainer: {fileID: 441468081}
+  _sceneSwitcher: {fileID: 531199876}
+  _nextSceneButton: {fileID: 1421703869}
 --- !u!4 &531199875
 Transform:
   m_ObjectHideFlags: 0
@@ -7870,18 +7872,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3463336042906852180, guid: b2ffd17a791927f458cebaeeec02f743, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5707547
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463336042906852180, guid: b2ffd17a791927f458cebaeeec02f743, type: 3}
-      propertyPath: m_Color.g
-      value: 0.83638084
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463336042906852180, guid: b2ffd17a791927f458cebaeeec02f743, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3463336042989889724, guid: b2ffd17a791927f458cebaeeec02f743, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -7929,10 +7919,6 @@ PrefabInstance:
     - target: {fileID: 3463336042989889725, guid: b2ffd17a791927f458cebaeeec02f743, type: 3}
       propertyPath: m_Name
       value: Play Space
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463336042989889725, guid: b2ffd17a791927f458cebaeeec02f743, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3463336044224859990, guid: b2ffd17a791927f458cebaeeec02f743, type: 3}
       propertyPath: m_Camera

@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _paddle1: {fileID: 0}
-  _launchForce: 15
+  _launchForce: 17
 --- !u!82 &7933980164923488157
 AudioSource:
   m_ObjectHideFlags: 0

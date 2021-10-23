@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe134e58ef6e7045a42d1af0db47330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 50
+  _mouseMoveSpeed: 50
+  _keyboardMoveSpeed: 20
   _borderDelta: 1.5
-  _reboundForce: 15
+  _reboundForce: 17

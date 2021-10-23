@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _mouseMoveSpeed;
+    [SerializeField] private float _keyboardMoveSpeed;
     [SerializeField] private float _borderDelta;
     [SerializeField] private float _reboundForce;
 
@@ -30,7 +31,8 @@ public class Paddle : MonoBehaviour
 
             float ballOffsetX = Mathf.Clamp(ballPositionRelativePaddle.x, -1.0f, 1.0f);
 
-            rigidbody.velocity = new Vector2(-ballOffsetX, 1) * _reboundForce;
+            rigidbody.velocity = new Vector2(-ballOffsetX, 1);
+            rigidbody.velocity = rigidbody.velocity.normalized * _reboundForce;
         }
     }
 
@@ -41,11 +43,14 @@ public class Paddle : MonoBehaviour
 
         Vector2 newPaddlePosition = new Vector2(mousePositionX, transform.position.y);
 
-        transform.position = Vector2.MoveTowards(transform.position, newPaddlePosition, _moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, newPaddlePosition, _mouseMoveSpeed * Time.deltaTime);
     }
 
     private void MoveHorizontalAxis()
     {
-        // TODO: Сделать ввод с клавиатуры.
+        float inputAxis = Input.GetAxisRaw("Horizontal");
+
+        float movePositionX = Mathf.Clamp(transform.position.x + inputAxis * _keyboardMoveSpeed * Time.deltaTime, leftBorderX, rightBorderX);
+        transform.position = new Vector2(movePositionX, transform.position.y);
     }
 }

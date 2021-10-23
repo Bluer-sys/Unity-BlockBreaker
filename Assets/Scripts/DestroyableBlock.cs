@@ -1,18 +1,25 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class DestroyableBlock : MonoBehaviour
 {
     [SerializeField] private Sprite[] _damageLevels;
+    [SerializeField] private int _health;
 
     private SpriteRenderer spriteRenderer;
-    private int health;
+
+    public UnityAction WasDestroyed;
+
+    private void OnValidate()
+    {
+        if (_health > 3 || _health < 0)
+            _health = 3;
+    }
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        health = _damageLevels.Length;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) // Получение урона при столкновении.
@@ -25,15 +32,16 @@ public class DestroyableBlock : MonoBehaviour
 
     private void TryTakeDamege()
     {
-        health--;
+        _health--;
 
-        if (health <= 0)
+        if (_health <= 0)
         {
+            WasDestroyed?.Invoke();
             gameObject.SetActive(false);
         }
         else
         {
-            spriteRenderer.sprite = _damageLevels[health - 1];
+            spriteRenderer.sprite = _damageLevels[_health - 1];
         }
     }
 }
