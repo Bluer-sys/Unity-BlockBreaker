@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7403105000421397743}
   - component: {fileID: 7403105000421397741}
   - component: {fileID: 7933980164923488157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ab283b3fc3d575a40b5eb1e34151e19c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,8 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce181c46630de604d91eb7059650e784, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _paddle1: {fileID: 0}
-  _launchForce: 17
+  _bounceFactor: 0.5
 --- !u!82 &7933980164923488157
 AudioSource:
   m_ObjectHideFlags: 0
@@ -149,7 +148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -6385162569992711512, guid: 99f424cae599efc4eb3567fc2683cbff, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4d920b3d52d911648b3b0dcced90daef, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class DestroyableBlock : MonoBehaviour
+public class DestroyableBlock : Block
 {
     [SerializeField] private Sprite[] _damageLevels;
     [SerializeField] private int _health;
+    [SerializeField] private ParticleSystem _hitParticlePrefab;
 
     private SpriteRenderer spriteRenderer;
+    private Color blockColor;
 
     public UnityAction WasDestroyed;
 
@@ -20,6 +22,7 @@ public class DestroyableBlock : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        blockColor = spriteRenderer.color;
     }
 
     private void OnCollisionEnter2D(Collision2D collision) // Получение урона при столкновении.
@@ -33,6 +36,7 @@ public class DestroyableBlock : MonoBehaviour
     private void TryTakeDamege()
     {
         _health--;
+        CreateParticle();
 
         if (_health <= 0)
         {
@@ -43,5 +47,12 @@ public class DestroyableBlock : MonoBehaviour
         {
             spriteRenderer.sprite = _damageLevels[_health - 1];
         }
+    }
+
+    private void CreateParticle()
+    {
+        ParticleSystem effect = Instantiate(_hitParticlePrefab, transform.position, Quaternion.identity);
+        effect.startColor = blockColor;
+        effect.Play();
     }
 }

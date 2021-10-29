@@ -3,7 +3,7 @@ using UnityEngine;
 public class Paddle : MonoBehaviour
 {
     [SerializeField] private float _mouseMoveSpeed;
-    [SerializeField] private float _keyboardMoveSpeed;
+    //[SerializeField] private float _keyboardMoveSpeed;
     [SerializeField] private float _borderDelta;
     [SerializeField] private float _reboundForce;
 
@@ -14,11 +14,6 @@ public class Paddle : MonoBehaviour
     {
         rightBorderX = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0f)).x - _borderDelta;
         leftBorderX = Camera.main.ScreenToWorldPoint(new Vector2(0f, 0f)).x + _borderDelta;
-    }
-
-    private void Update()
-    {
-        MoveToMousePosition();   
     }
 
     private void OnCollisionEnter2D(Collision2D collision) // Разворот столкнувшегося предмета относительно подноса.
@@ -36,7 +31,7 @@ public class Paddle : MonoBehaviour
         }
     }
 
-    private void MoveToMousePosition()
+    public void MoveToMousePosition()
     {
         float mousePositionX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
         mousePositionX = Mathf.Clamp(mousePositionX, leftBorderX, rightBorderX);
@@ -46,11 +41,11 @@ public class Paddle : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, newPaddlePosition, _mouseMoveSpeed * Time.deltaTime);
     }
 
-    private void MoveHorizontalAxis()
+    /*private void MoveHorizontalAxis()
     {
         float inputAxis = Input.GetAxisRaw("Horizontal");
 
         float movePositionX = Mathf.Clamp(transform.position.x + inputAxis * _keyboardMoveSpeed * Time.deltaTime, leftBorderX, rightBorderX);
         transform.position = new Vector2(movePositionX, transform.position.y);
-    }
+    }*/
 }

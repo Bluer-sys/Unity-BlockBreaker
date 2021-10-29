@@ -1,12 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Transform _blocksContainer;
-    [SerializeField] private SceneSwitcher _sceneSwitcher;
     [SerializeField] private Button _nextSceneButton;
+    [SerializeField] private ScoreViewer _scoreViewer;
+
+    [SerializeField] private GameStateMachine _stateMachine;
+    [SerializeField] private GameState _firstState;
 
     private int blocksCount;
     private int destroyedBlocksCount;
@@ -20,19 +22,36 @@ public class GameController : MonoBehaviour
 
     private void OnEnable()
     {
+        _stateMachine.EnterState(_firstState);
+
         SubscribeDestroyEvent();
     }
 
     private void Start()
     {
         blocksCount = _blocksContainer.childCount;
+
+        _scoreViewer.SetBlocksCount(blocksCount);
+        _scoreViewer.SetScore(destroyedBlocksCount);
+    }
+
+    private void Update()
+    {
+        _stateMachine.CurrentState.InputUpdate();
+        _stateMachine.CurrentState.LogicUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        _stateMachine.CurrentState.PhysicUpdate();
     }
 
     private void OnBlockDestroyed()
     {
         destroyedBlocksCount++;
+        _scoreViewer.SetScore(destroyedBlocksCount);
 
-        if(destroyedBlocksCount == blocksCount)
+        if (destroyedBlocksCount == blocksCount)
         {
             UnsubscribeDestroyEvent();
 
